@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../db_connect.php'; // Ensure this file contains correct database connection details
+require_once '../db_connect.php'; 
 
 // Check if booking details are available in session
 if (!isset($_SESSION['booking_details'])) {
@@ -15,10 +15,10 @@ $pickup_time = $booking['pickup_time'];
 $pickup_date = $booking['pickup_date'];
 $driver_id = $booking['driver_id'];
 
-// Example distance and duration calculation (replace with actual API call or logic)
+ 
 $distance = '10 km';
 $duration = '20 minutes';
-$additional_charges = '0'; // Replace with actual charges calculation
+$additional_charges = '0'; // Need add the charges calculation
 ?>
 
 <!DOCTYPE html>

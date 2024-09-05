@@ -3,11 +3,11 @@ session_start();
 
 // Check if the user is logged in
 if (!isset($_SESSION['username'])) {
-    header('Location: ../login.php'); // Adjusted path to navigate up from 'driver' folder
+    header('Location: ../login.php'); 
     exit();
 }
 
-$username = $_SESSION['username']; // Assuming 'username' is the name for drivers
+$username = $_SESSION['username']; 
 
 // Database connection
 $conn = new mysqli('localhost', 'root', '', 'taxi_reservation');
@@ -141,7 +141,7 @@ $conn->close();
     </script>
 </head>
 <body>
-    <?php include '../includes/header.php'; ?> <!-- Corrected path for inclusion -->
+    <?php include '../includes/header.php'; ?>
 
     <div class="container mt-5">
         <h2>Profile</h2>
@@ -211,6 +211,6 @@ $conn->close();
 
     </div>
 
-    <?php include '../includes/footer.php'; ?> <!-- Corrected path for inclusion -->
+    <?php include '../includes/footer.php'; ?>  
 </body>
 </html>

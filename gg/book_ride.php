@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../db_connect.php'; // Ensure this file contains correct database connection details
+require_once '../db_connect.php';  
 
 // Check if passenger ID is set in session
 if (!isset($_SESSION['passenger_id'])) {
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
 
     if (!empty($pickup_location) && !empty($destination) && !empty($pickup_time) && !empty($pickup_date) && !empty($driver_id)) {
         // Fetch passenger details
-        $passengerQuery = "SELECT Name, Phone FROM passengers WHERE PID = ?";
+        $passengerQuery = "SELECT Name, Contact FROM passengers WHERE PID = ?";
         $stmt = $conn->prepare($passengerQuery);
         $stmt->bind_param("i", $passenger_id);
         $stmt->execute();
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
         // Insert into job_assignments table
         $insertQuery = "INSERT INTO job_assignments (DriverID, PassengerID, PickupLocation, Destination, PickupTime, PickupDate, PassengerName, PassengerPhone) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($insertQuery);
-        $stmt->bind_param("iissssss", $driver_id, $passenger_id, $pickup_location, $destination, $pickup_time, $pickup_date, $passenger['Name'], $passenger['Phone']);
+        $stmt->bind_param("iissssss", $driver_id, $passenger_id, $pickup_location, $destination, $pickup_time, $pickup_date, $passenger['Name'], $passenger['Contact']);
         $stmt->execute();
         $stmt->close();
 
@@ -52,6 +52,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
     <title>Book Ride</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .success-popup {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background-color: #28a745;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+            z-index: 1000;
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
@@ -79,11 +92,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
             <div id="driver-list" class="mt-3" style="display: none;">
                 <h4>Select Driver</h4>
                 <div id="drivers-container"></div>
-                <button type="submit" class="btn btn-success mt-3">Next</button>
                 <button type="button" class="btn btn-success mt-3" id="book-ride-btn">Book Ride</button>
             </div>
         </form>
     </div>
+
+    <div class="success-popup" id="success-popup">Request sent to the driver</div>
 
     <script>
         // Fetch available drivers
@@ -131,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
                     success: function(response) {
                         var result = JSON.parse(response);
                         if (result.status === 'success') {
-                            alert('Request sent to the driver');
+                            $('#success-popup').fadeIn().delay(2000).fadeOut();
                         } else {
                             alert(result.message);
                         }

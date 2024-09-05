@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../db_connect.php'; // Ensure this file contains correct database connection details
+require_once '../db_connect.php'; 
 
 // Check if passenger ID is set in session
 if (!isset($_SESSION['passenger_id'])) {

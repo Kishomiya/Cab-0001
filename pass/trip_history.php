@@ -5,7 +5,7 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-// Include your database connection
+ 
 $conn = new mysqli('localhost', 'root', '', 'taxi_reservation');
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);

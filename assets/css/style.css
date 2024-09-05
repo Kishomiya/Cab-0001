@@ -1,0 +1,162 @@
+:root {
+  --font-family-sans-serif: "Nunito", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+.font-Nunito{
+  font-family: Nunito;
+
+}
+.bg-Blue {
+  background-color: #cbe5fe;
+  height: auto;
+}
+.login-Body {
+  height: 100vh;
+  background-color: #cbe5fe;
+}
+.login-main {
+  width: 350px;
+  border-radius: 15px;
+}
+.font-weight-bolder {
+  font-weight: bolder !important;
+}
+.log-button {
+  width: 255px;
+}
+.text.black {
+  color: black;
+}
+.bg.black {
+  color: black;
+}
+.register-main {
+  border-radius: 15px;
+}
+.form-group {
+  margin-bottom: 1rem;
+}
+.re-button{
+    width: 453px;
+}
+footer.sticky-footer {
+  padding: 2rem 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+footer.sticky-footer .copyright {
+  line-height: 1;
+  font-size: 0.8rem;
+}
+
+/* sidebar section */
+#wrapper {
+  display: flex;
+  align-items: stretch;
+}
+
+#sidebar-wrapper {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: all 0.3s;
+  background-color: #000000;
+  font-family: Nunito;
+  font-size: 16px;
+}
+
+#page-content-wrapper {
+  width: 100%;
+  position: relative;
+  transition: all 0.3s;
+  margin-left: 230px;
+  top: 0;
+  font-family: Nunito;
+
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: -250px;
+}
+
+.sidebar-heading {
+  align-items: center;
+}
+
+.list-group-item,
+.list-group-item1 {
+  border: none;
+  padding: 15px 20px;
+  background-color: #000000;
+}
+.list-group-item1 {
+  background-color: #007bff;
+}
+
+.list-group-item:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.tab-name {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.bg-black {
+  background-color: #000000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -257,7 +257,7 @@ CREATE TABLE IF NOT EXISTS payments (
     FOREIGN KEY (PID) REFERENCES passengers(PID),
     FOREIGN KEY (DID) REFERENCES drivers(DID)
 );
--- Create the job_assignments table
+
 -- Create the job_assignments table
 CREATE TABLE IF NOT EXISTS job_assignments (
     JobID INT AUTO_INCREMENT PRIMARY KEY,
@@ -271,4 +271,18 @@ CREATE TABLE IF NOT EXISTS job_assignments (
     PassengerPhone VARCHAR(20) NOT NULL,
     FOREIGN KEY (DriverID) REFERENCES drivers(DID) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (PassengerID) REFERENCES passengers(PID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+ALTER TABLE job_assignments ADD COLUMN Status ENUM('Pending', 'Accepted', 'Canceled') DEFAULT 'Pending';
+
+INSERT INTO admins (Username, Password) VALUES ('admin', PASSWORD('admin123'));
+
+CREATE TABLE IF NOT EXISTS notifications (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    PassengerID INT NOT NULL,
+    DriverID INT NOT NULL,
+    JobID INT NOT NULL,
+    Message TEXT NOT NULL,
+    Status ENUM('Unread', 'Read') DEFAULT 'Unread',
+    FOREIGN KEY (PassengerID) REFERENCES passengers(PID),
+    FOREIGN KEY (DriverID) REFERENCES drivers(DID)
 );
